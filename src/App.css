@@ -1,0 +1,176 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.clock {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  background-color: #272727;
+  border-radius: 20%;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.hours {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.clock-frame .hours:nth-child(1) {
+  transform: rotate(0deg) translateY(-120px) rotate(0deg);
+}
+.clock-frame .hours:nth-child(2) {
+  transform: rotate(30deg) translateY(-120px) rotate(-30deg);
+}
+.clock-frame .hours:nth-child(3) {
+  transform: rotate(60deg) translateY(-120px) rotate(-60deg);
+}
+.clock-frame .hours:nth-child(4) {
+  transform: rotate(90deg) translateY(-120px) rotate(-90deg);
+}
+.clock-frame .hours:nth-child(5) {
+  transform: rotate(120deg) translateY(-120px) rotate(-120deg);
+}
+.clock-frame .hours:nth-child(6) {
+  transform: rotate(150deg) translateY(-120px) rotate(-150deg);
+}
+.clock-frame .hours:nth-child(7) {
+  transform: rotate(180deg) translateY(-120px) rotate(-180deg);
+}
+.clock-frame .hours:nth-child(8) {
+  transform: rotate(210deg) translateY(-120px) rotate(-210deg);
+}
+.clock-frame .hours:nth-child(9) {
+  transform: rotate(240deg) translateY(-120px) rotate(-240deg);
+}
+.clock-frame .hours:nth-child(10) {
+  transform: rotate(270deg) translateY(-120px) rotate(-270deg);
+}
+.clock-frame .hours:nth-child(11) {
+  transform: rotate(300deg) translateY(-120px) rotate(-300deg);
+}
+.clock-frame .hours:nth-child(12) {
+  transform: rotate(330deg) translateY(-120px) rotate(-330deg);
+}
+
+.marks {
+  position: absolute;
+  z-index: 1000;
+}
+
+.hour-mark {
+  background-color: rgb(234, 234, 234);
+  padding: 2px 1px;
+  margin: 0;
+  position: absolute;
+}
+
+.marks .hour-mark:nth-child(1) {
+  transform: rotate(0deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(2) {
+  transform: rotate(30deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(3) {
+  transform: rotate(60deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(4) {
+  transform: rotate(90deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(5) {
+  transform: rotate(120deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(6) {
+  transform: rotate(150deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(7) {
+  transform: rotate(180deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(8) {
+  transform: rotate(210deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(9) {
+  transform: rotate(240deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(10) {
+  transform: rotate(270deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(11) {
+  transform: rotate(300deg) translateY(-150px);
+}
+
+.marks .hour-mark:nth-child(12) {
+  transform: rotate(330deg) translateY(-150px);
+}
+
+.hour-hand,
+.minute-hand,
+.second-hand {
+  position: absolute;
+  background-color: rgb(234, 234, 234);
+}
+
+.hour-hand {
+  width: 60px;
+  height: 5px;
+  transform: rotate(160deg) translateX(-50%);
+}
+
+.minute-hand {
+  width: 99px;
+  height: 2px;
+}
+
+.second-hand {
+  width: 150px;
+  height: 1.5px;
+  background-color: rgb(255, 50, 50);
+  transform: rotate(30deg) translateX(-40%);
+}
+
+.center-dot {
+  background-color: rgb(234, 0, 0);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
