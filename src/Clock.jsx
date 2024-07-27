@@ -1,16 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+const hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 export default function Clock() {
   const [currenttime, setCurrentTime] = useState(new Date());
 
-  const [currentMode, setcurrentMode] = useState("dark");
+  const handleClick = useCallback(() => {
+    const currentTheme = document.body.className.includes("dark")
+      ? "dark"
+      : "light";
 
-  const handleClick = () => {
-    setcurrentMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
-    console.log("Body was clicked");
-  };
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    document.body.classList.remove(currentTheme);
+    document.body.classList.add(nextTheme);
+  }, []);
 
   useEffect(() => {
+    document.body.className = "dark";
     const interval = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -20,62 +26,45 @@ export default function Clock() {
       clearInterval(interval);
       document.body.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [handleClick]);
 
-  useEffect(() => {
-    document.body.className = currentMode;
-  }, [currentMode]);
-
-  const hours = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-  const seconds = currenttime.getSeconds() * 6;
+  const hourstime =
+    currenttime.getHours() * 30 + currenttime.getMinutes() * 0.5;
   const minutes = currenttime.getMinutes() * 6;
-  const hourstime = currenttime.getHours() * 30;
+  const seconds = currenttime.getSeconds() * 6;
 
+  console.log(seconds);
   return (
     <>
       <div className="clock">
-        <div className={`marks ${currentMode}`} onClick={handleClick}>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
-          <div className="hour-mark"></div>
+        <div className={`marks`} onClick={handleClick}>
+          {hours.map((h) => (
+            <div key={{ h }} className="hour-mark" />
+          ))}
         </div>
-        <div className={`clock-frame ${currentMode}`} onClick={handleClick}>
+        <div className={`clock-frame`}>
           {hours.map((hour, index) => (
-            <div
-              key={index}
-              className={`hours ${currentMode}`}
-              onClick={handleClick}
-            >
+            <div key={index} className={`hours`} onClick={handleClick}>
               {hour}
             </div>
           ))}
         </div>
         <div
-          className={`hour-hand ${currentMode}`}
-          onClick={handleClick}
-          style={{ transform: `rotate(${hourstime}deg) translateX(-50%)` }}
+          className={`hour-hand`}
+          style={{
+            transform: `rotate(calc(${hourstime}deg + 90deg)) translateX(-50%)`,
+          }}
         ></div>
         <div
-          className={`minute-hand ${currentMode}`}
-          onClick={handleClick}
+          className={`minute-hand`}
           style={{
-            transform: `rotate(${minutes}deg) translateX(-50%)`,
+            transform: `rotate(calc(${minutes}deg + 90deg)) translateX(-50%)`,
           }}
         ></div>
         <div
           className="second-hand"
           style={{
-            transform: `rotate(${seconds}deg) translateX(-40%)`,
+            transform: `rotate(calc(${seconds}deg + 90deg)) translateX(-40%)`,
           }}
         ></div>
         <div className="center-dot"></div>
